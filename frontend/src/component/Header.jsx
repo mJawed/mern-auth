@@ -1,19 +1,27 @@
 
 import { useState } from 'react'
+import { Link, useLocation } from "react-router-dom";
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 
 const navigation = [
-    { name: 'Product', href: '#' },
-    { name: 'Features', href: '#' },
-    { name: 'Marketplace', href: '#' },
+    { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Profile', href: '/profile' },
     { name: 'Company', href: '#' },
   ]
 
 function Header() {
 
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const location = useLocation();
+  const hideHeaderForPaths = ['/sign-in','/pathname2'];
+   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+   if(hideHeaderForPaths.includes(location.pathname)) {
+    return <></>;
+ }
+
     return ( 
         <>
        <div className="bg-white">
@@ -41,15 +49,16 @@ function Header() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
+              <Link key={item.name} to={item.href} className="text-sm font-semibold leading-6 text-gray-900">
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
+
+            <Link to="/sign-in" className="text-sm font-semibold leading-6 text-gray-900">
+            Log in <span aria-hidden="true">&rarr;</span>
+            </Link>
           </div>
         </nav>
         <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>

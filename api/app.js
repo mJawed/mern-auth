@@ -8,7 +8,7 @@ app.use(express.json())
 //Routes import
 
 //const product = require('./routes/productRouter');
-//const userRouters = require('./routes/userRouter');
+const userRouters = require('./routes/user.Router.js');
 
 
 
@@ -16,10 +16,18 @@ app.use(express.json())
 //app.use('/api/v1',product) 
 //app.use('/api/v1',userRouters) 
 
+app.use('/api/user', userRouters);
+
 
 //Middleware 
 
-//app.use(errorMiddleware);
+///app.use(errorMiddleware);
 
 
-module.exports = app
+app.get('/',(req,res)=>{
+    res.json({
+        message:'welcome to the api yo yo'
+    })
+})
+
+module.exports = app  
