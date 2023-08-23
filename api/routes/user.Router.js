@@ -1,6 +1,4 @@
 const express = require('express')
-
-
 const test =require('../controller/user.controller.js')
 
 

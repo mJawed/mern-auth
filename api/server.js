@@ -3,7 +3,7 @@ const userRouter = require('../api/routes/user.Router.js')
 const dotenv = require('dotenv');
 const connectDataBase = require('./config/database')
 
-console.log(userRouter);
+
 //config
 
 dotenv.config({path:"api/config/config.env"})

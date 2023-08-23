@@ -9,6 +9,8 @@ app.use(express.json())
 
 //const product = require('./routes/productRouter');
 const userRouters = require('./routes/user.Router.js');
+const authRouter = require('./routes/auth.Router.js'); 
+
 
 
 
@@ -17,6 +19,8 @@ const userRouters = require('./routes/user.Router.js');
 //app.use('/api/v1',userRouters) 
 
 app.use('/api/user', userRouters);
+app.use('/api/signup', authRouter);
+
 
 
 //Middleware 
