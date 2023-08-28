@@ -1,33 +1,46 @@
+import { Link } from "react-router-dom";
+import SignUp from "./SignUp";
+
 function SignIn() {
-
-
 function handleSubmit(e){
 e.preventDefault()
 }
 
     return (  
 <>
-<main className="relative flex flex-1 flex-col overflow-hidden px-4 py-8 sm:px-6 lg:px-8">
-<img src="/img/beams-cover@95.jpg" alt="" class="absolute left-1/2 top-0 -ml-[47.5rem] w-[122.5rem] max-w-none"/>
-<div class="absolute inset-0 text-slate-900/[0.07] [mask-image:linear-gradient(to_bottom_left,white,transparent,transparent)]"><svg class="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid-bg" width="32" height="32" patternUnits="userSpaceOnUse" x="100%" patternTransform="translate(0 -1)"><path d="M0 32V.5H32" fill="none" stroke="currentColor"></path></pattern></defs><rect width="100%" height="100%" fill="url(#grid-bg)"></rect></svg></div>
-        <div className="relative flex flex-1 flex-col items-center justify-center pb-16 pt-12">
-<h1 class="sr-only">Log in to your Tailwind UI account</h1>
-        <form className="w-full max-w-sm" onSubmit={handleSubmit}>
-            <div className="flex flex-col pt-4">
-                <label htmlFor="email" className="text-lg">Email</label>
-                <input type="email" id="email" placeholder="your@email.com" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
-            </div>
+<section className="bg-gray-50 dark:bg-gray-900">
+  <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+          <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo"/>
+          Flowbite    
+      </a>
+      <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                  Login your account
+              </h1>
+              <form className="space-y-4 md:space-y-6" action="#" onSubmit={handleSubmit}>
+                  <div>
+                      <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                      <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required=""/>
+                  </div>
+                  <div>
+                      <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                      <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
+                  </div>
 
-            <div className="flex flex-col pt-4">
-                <label htmlFor="password" className="text-lg">Password</label>
-                <input type="password" id="password" placeholder="Password" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
-            </div>
-
-            <button type="submit" className="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700 w-full">Sign in to account</button>
-        </form>
-        </div>
-        </main>
-        </>
+              
+                  <button type="submit" className="w-full rounded-md bg-indigo-600 px-3.5 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Login to your account</button>
+                  <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                      Don't have an account? <Link to='/sign-up' className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                       Sign Up here</Link> 
+                        
+                  </p>
+              </form>
+          </div>
+      </div>
+  </div>
+</section></>
     );
 }
 

@@ -15,7 +15,7 @@ const navigation = [
 function Header() {
 
   const location = useLocation();
-  const hideHeaderForPaths = ['/sign-in','/pathname2'];
+  const hideHeaderForPaths = ['/sign-in','/sign-up'];
    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
    if(hideHeaderForPaths.includes(location.pathname)) {
