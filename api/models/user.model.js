@@ -17,6 +17,9 @@ const userSchema = new mongoose.Schema({
     minlength: [4, 'Password must be at least 4 characters'],
     maxlength: [300, 'Password cannot exceed 200 characters'],
   },
+  terms: {
+    type: Boolean,
+  },
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema); 

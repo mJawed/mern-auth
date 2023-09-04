@@ -7,26 +7,35 @@ const saltRounds = 10;
 
 const signUp = async (req, res, next) => {
   try {
-    const { username, email, password } = req.body;
-    const passwordHash = await bcrypt.hash(password, saltRounds); 
+    const { userName, userEmail, userPassword, userTerms } = req.body;
+    const passwordHash = await bcrypt.hash(userPassword, saltRounds); 
 
-    console.log(req.body);
-
+  
     const newUser = new User({
-      username,
-      email,
-      password:passwordHash,
+      username: userName,
+      email: userEmail,
+      password: passwordHash,
+      terms: userTerms
     });
 
     await newUser.save(); 
 
-    res.status(201).json({ message: "true" });
+    res.status(201).json({ message: "User created successfully" });
+  
   } catch (error) {
-    console.error("Error during sign-up:", error);
-    //res.status(500).json({ message: {error} });
-next(error)
-
+    //console.error("Error during sign-up:", error);
+    console.log(error.name)
+    // Send a meaningful error response
+    if (error.name === 'ValidationError') {
+      const errorMessages = Object.values(error.errors).map(err => err.message);
+      res.status(400).json({ errors: errorMessages });
+    } else {
+      res.status(500).json({ message: "An error occurred during sign-up" });
+    }
   }
 };
 
 module.exports = signUp;
+
+
+

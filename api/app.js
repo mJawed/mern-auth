@@ -10,6 +10,7 @@ app.use(express.json())
 //const product = require('./routes/productRouter');
 const userRouters = require('./routes/user.Router.js');
 const authRouter = require('./routes/auth.Router.js'); 
+const authSingInRouter = require('./routes/signin.Router.js')
 
 
 
@@ -19,7 +20,8 @@ const authRouter = require('./routes/auth.Router.js');
 //app.use('/api/v1',userRouters) 
 
 app.use('/api/user', userRouters);
-app.use('/api/signup', authRouter);
+app.use('/api/auth/signup', authRouter);
+app.use('/api/auth/signin', authSingInRouter);
 
 
 
