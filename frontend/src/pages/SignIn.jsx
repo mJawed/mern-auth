@@ -2,16 +2,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function SignIn() {
-  const [formData, setFormData] = useState({ 
-    userName: "",
-    userPassword: "",
-  });
+  const[errorMessage, setErrorMessage]=useState('');
+  const [username, setusername] = useState('');
+  const [userPassword, setuserPassword]= useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const formData = {username,userPassword};
     console.log(formData)
-
+    console.log(errorMessage)
     try {
       const response = await fetch('/api/auth/signin', {
         method: 'POST',
@@ -20,26 +19,16 @@ function SignIn() {
         },
         body: JSON.stringify(formData),
       });
-
-      if (response.ok) {
-        // Handle successful sign-in, e.g., redirect to another page
-        console.log('Sign-in successful');
-      } else {
-        // Handle sign-in error
-        console.error('Sign-in failed');
-      }
+      const data = await response.json();
+      console.log(data);
+      setErrorMessage(data);
     } catch (error) {
       console.error('An error occurred during sign-in:', error);
     }
+    
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -60,13 +49,13 @@ function SignIn() {
                 </label>
                 <input
                   type="text"
-                  name="userName"
+                  name="username"
                   id="username"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="name@company.com"
                   required=""
-                  value={formData.userName}
-                  onChange={handleChange}
+                  value={username}
+                  onChange={(e)=> setusername(e.target.value)}
                 />
               </div>
               <div>
@@ -75,13 +64,13 @@ function SignIn() {
                 </label>
                 <input
                   type="password"
-                  name="userPassword"
+                  name="userpassword"
                   id="password"
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required=""
-                  value={formData.userPassword}
-                  onChange={handleChange}
+                  value={userPassword}
+                  onChange={(e)=>setuserPassword(e.target.value)}
                 />
               </div>
 
